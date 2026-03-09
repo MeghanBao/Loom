@@ -19,13 +19,16 @@ defmodule Loom.Scheduler do
 
   # --- Client API ---
 
+  @doc """
+  Starts the scheduler process.
+  """
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
-  @doc \"\"\"
+  @doc """
   Executes a workflow synchronously, blocking until completion.
-  \"\"\"
+  """
   @spec execute_sync(Loom.Workflow.Graph.t(), term(), keyword()) ::
           {:ok, map()} | {:error, term()}
   def execute_sync(workflow, input, opts \\ []) do
@@ -33,9 +36,9 @@ defmodule Loom.Scheduler do
     GenServer.call(__MODULE__, {:execute, workflow, input, opts}, timeout)
   end
 
-  @doc \"\"\"
+  @doc """
   Executes a workflow asynchronously, returning a reference.
-  \"\"\"
+  """
   @spec execute_async(Loom.Workflow.Graph.t(), term(), keyword()) :: {:ok, reference()}
   def execute_async(workflow, input, opts \\ []) do
     ref = make_ref()
@@ -43,9 +46,9 @@ defmodule Loom.Scheduler do
     {:ok, ref}
   end
 
-  @doc \"\"\"
+  @doc """
   Awaits the result of an async workflow execution.
-  \"\"\"
+  """
   @spec await(reference(), timeout()) :: {:ok, map()} | {:error, term()}
   def await(ref, timeout \\ 60_000) do
     receive do
@@ -55,9 +58,9 @@ defmodule Loom.Scheduler do
     end
   end
 
-  @doc \"\"\"
+  @doc """
   Returns the current scheduler status.
-  \"\"\"
+  """
   @spec status() :: map()
   def status do
     GenServer.call(__MODULE__, :status)
@@ -142,7 +145,7 @@ defmodule Loom.Scheduler do
 
           _pid =
             spawn(fn ->
-              ref = Process.monitor(self())
+              _ref = Process.monitor(self())
               result = Executor.execute(item.workflow, item.input, item.opts)
               send(scheduler, {:task_done, task_ref, result})
             end)
