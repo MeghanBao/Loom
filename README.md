@@ -1,6 +1,6 @@
 # Loom
 
-[![CI](https://github.com/MeghanBao/loom/actions/workflows/ci.yml/badge.svg)](https://github.com/MeghanBao/loom/actions/workflows/ci.yml)
+[![CI](https://github.com/MeghanBao/Loom/actions/workflows/ci.yml/badge.svg)](https://github.com/MeghanBao/Loom/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Elixir](https://img.shields.io/badge/Elixir-1.15%2B-purple.svg)](https://elixir-lang.org/)
 
