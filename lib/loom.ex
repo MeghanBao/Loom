@@ -28,7 +28,6 @@ defmodule Loom do
       {:ok, result} = Loom.run(workflow, "What is the BEAM?")
   """
 
-  alias Loom.Workflow.Executor
   alias Loom.Scheduler
 
   @doc """
