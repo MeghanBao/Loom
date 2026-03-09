@@ -1,4 +1,4 @@
-﻿defmodule Loom.Scheduler do
+defmodule Loom.Scheduler do
   @moduledoc \"\"\"
   Workflow scheduler managing execution queue and concurrency.
 
