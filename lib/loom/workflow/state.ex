@@ -54,9 +54,10 @@ defmodule Loom.Workflow.State do
   """
   @spec put_result(t(), atom(), term()) :: t()
   def put_result(state, step_name, result) do
-    %{state |
-      results: Map.put(state.results, step_name, result),
-      statuses: Map.put(state.statuses, step_name, :completed)
+    %{
+      state
+      | results: Map.put(state.results, step_name, result),
+        statuses: Map.put(state.statuses, step_name, :completed)
     }
   end
 
@@ -65,9 +66,10 @@ defmodule Loom.Workflow.State do
   """
   @spec put_error(t(), atom(), term()) :: t()
   def put_error(state, step_name, error) do
-    %{state |
-      errors: Map.put(state.errors, step_name, error),
-      statuses: Map.put(state.statuses, step_name, :failed)
+    %{
+      state
+      | errors: Map.put(state.errors, step_name, error),
+        statuses: Map.put(state.statuses, step_name, :failed)
     }
   end
 

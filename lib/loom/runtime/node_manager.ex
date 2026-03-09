@@ -79,7 +79,9 @@ defmodule Loom.Runtime.NodeManager do
 
   @impl true
   def handle_cast({:add_node, node_name}, state) do
-    nodes = Map.put_new(state.nodes, node_name, %{status: :healthy, last_seen: DateTime.utc_now()})
+    nodes =
+      Map.put_new(state.nodes, node_name, %{status: :healthy, last_seen: DateTime.utc_now()})
+
     {:noreply, %{state | nodes: nodes}}
   end
 
@@ -90,9 +92,16 @@ defmodule Loom.Runtime.NodeManager do
   end
 
   def handle_info({:nodedown, node}, state) do
-    nodes = Map.update(state.nodes, node, %{status: :unhealthy, last_seen: DateTime.utc_now()}, fn info ->
-      %{info | status: :unhealthy}
-    end)
+    nodes =
+      Map.update(
+        state.nodes,
+        node,
+        %{status: :unhealthy, last_seen: DateTime.utc_now()},
+        fn info ->
+          %{info | status: :unhealthy}
+        end
+      )
+
     {:noreply, %{state | nodes: nodes}}
   end
 

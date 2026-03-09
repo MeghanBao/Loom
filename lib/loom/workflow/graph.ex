@@ -197,8 +197,11 @@ defmodule Loom.Workflow.Graph do
       |> Enum.sort()
 
     case ready do
-      [] -> Enum.reverse(groups)
-      group -> build_parallel_groups(steps, MapSet.union(completed, MapSet.new(group)), [group | groups])
+      [] ->
+        Enum.reverse(groups)
+
+      group ->
+        build_parallel_groups(steps, MapSet.union(completed, MapSet.new(group)), [group | groups])
     end
   end
 

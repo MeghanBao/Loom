@@ -95,7 +95,8 @@ defmodule Loom.Telemetry.Metrics do
   def handle_event([:loom, component, :error], measurements, metadata, _config) do
     duration_ms = System.convert_time_unit(measurements[:duration], :native, :millisecond)
 
-    Logger.error("[Loom] #{component} failed after #{duration_ms}ms: #{inspect(metadata[:error])}",
+    Logger.error(
+      "[Loom] #{component} failed after #{duration_ms}ms: #{inspect(metadata[:error])}",
       component: component,
       duration_ms: duration_ms,
       error: metadata[:error]

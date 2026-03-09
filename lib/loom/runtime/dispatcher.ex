@@ -21,7 +21,7 @@ defmodule Loom.Runtime.Dispatcher do
 
     * `:strategy` - Dispatch strategy (default: `:round_robin`)
   """
-  @spec dispatch((() -> term()), keyword()) :: term()
+  @spec dispatch((-> term()), keyword()) :: term()
   def dispatch(fun, opts \\ []) do
     strategy = opts[:strategy] || :round_robin
 
@@ -40,7 +40,7 @@ defmodule Loom.Runtime.Dispatcher do
   @doc """
   Dispatches a function and waits for the result.
   """
-  @spec dispatch_sync((() -> term()), keyword()) :: {:ok, term()} | {:error, :timeout}
+  @spec dispatch_sync((-> term()), keyword()) :: {:ok, term()} | {:error, :timeout}
   def dispatch_sync(fun, opts \\ []) do
     timeout = opts[:timeout] || 30_000
     me = self()

@@ -159,5 +159,7 @@ defmodule Loom.Scheduler do
   end
 
   defp reply_to_waiter({:sync, from}, result), do: GenServer.reply(from, result)
-  defp reply_to_waiter({:async, caller, ref}, result), do: send(caller, {:loom_result, ref, result})
+
+  defp reply_to_waiter({:async, caller, ref}, result),
+    do: send(caller, {:loom_result, ref, result})
 end
