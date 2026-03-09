@@ -1,11 +1,11 @@
 defmodule Loom.Scheduler do
-  @moduledoc \"\"\"
+  @moduledoc """
   Workflow scheduler managing execution queue and concurrency.
 
   The scheduler accepts workflow execution requests and manages them
   with configurable concurrency limits. Workflows are queued and
   dispatched as capacity becomes available.
-  \"\"\"
+  """
 
   use GenServer
 
